@@ -11,7 +11,8 @@ class Post extends CI_Controller
 
     public function index()
     {
-        $this->load->view('admin/post_list.php');
+        $data['articles'] = $this->article_model->get();
+        $this->load->view('admin/post_list.php', $data);
     }
 
     public function new()
@@ -39,7 +40,7 @@ class Post extends CI_Controller
             }
         }
 
-        $this->load->view('admin/post_form.php');
+        $this->load->view('admin/post_new_form.php');
     }
     
     public function edit($id)

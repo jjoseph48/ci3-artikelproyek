@@ -26,34 +26,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
-                        <div>Hello World</div>
-                        <div class="text-gray"><small>12 Jan 2021<small></div>
-                    </td>
-                    <td class="text-center text-gray">Draft</td>
-                    <td>
-                        <div class="action">
-                            <a href="#" class="button button-small" role="button">View</a>
-                            <a href="#" class="button button-small" role="button">Edit</a>
-                            <a href="#" class="button button-small button-danger" role="button">Delete</a>
-                        </div> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>Hello World</div>
-                        <div class="text-gray"><small>12 Jan 2021<small></div>
-                    </td>
-                    <td class="text-center text-green">Published</td>
-                    <td>
-                        <div class="action">
-                            <a href="#" class="button button-small" role="button">View</a>
-                            <a href="#" class="button button-small" role="button">Edit</a>
-                            <a href="#" class="button button-small button-danger" role="button">Delete</a>
-                        </div>
-                    </td>
-                </tr>
+                <?php foreach($articles as $article): ?>
+                    <tr>
+                        <td>
+                            <div><?= $article->title ?></div>
+                            <div class="text-gray"><small><?= $article->created_at ?></small></div>
+                        </td>
+                        <?php if($article->draft === 'true'): ?>
+                            <td class="text-center"><span class="badge badge-warning">Draft</span></td>
                 </tbody>
             </table>
 
