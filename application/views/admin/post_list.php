@@ -33,7 +33,23 @@
                             <div class="text-gray"><small><?= $article->created_at ?></small></div>
                         </td>
                         <?php if($article->draft === 'true'): ?>
-                            <td class="text-center"><span class="badge badge-warning">Draft</span></td>
+                            <td class="text-center text-gray">Draft</td>
+                        <?php else: ?>
+                            <td class="text-center text-green">Published</td>
+                        <?php endif; ?>
+                        <td>
+                            <div class="action">
+                                <a href=<?= site_url('article/'.$article->slug) ?> class="button button-small" target="_blank" role="button">Preview</a>
+                                <a href=<?= site_url('admin/post/edit/'.$article->id) ?> class="button button-small" role="button">Edit</a>
+                                <a href="#"
+                                    data-delete-url="<?= site_url('admin/post/delete/'.$article->id) ?>"
+                                    class="button button-small button-danger"
+                                    role="button"
+                                    onclick="deleteConfirm(this)">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
 
