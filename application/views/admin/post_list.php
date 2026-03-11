@@ -14,7 +14,7 @@
             <h1>List Artikel</h1>
 
             <div class="toolbar">
-                <a href="#" class="button button-primary" role="button">+ Tulis Artikel</a>
+                <a href="<?= site_url('admin/post/new') ?>" class="button button-primary" role="button">+ Tulis Artikel</a>
             </div>
 
             <table class="table">
@@ -22,7 +22,7 @@
                     <tr>
                         <th>Title</th>
                         <th style="width: 15%;" class="text-center">Status</th>
-                        <th style="width: 25%." class="text-center">Action</th>
+                        <th style="width: 25%;" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,7 +56,44 @@
             <?php $this->load->view('admin/_partials/footer.php') ?>
 </div>
 </main>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function deleteConfirm(event) {
+        Swal.fire({
+            title: 'Delete Confirmation!',
+            text : 'Are you sure to delete the item?',
+            icon : 'warning',
+            showCancelButton : true,
+            cancelButtonText : 'No',
+            confirmButtonText : 'Yes Delete',
+            confirmButtonColor : 'red'
+        }).then(dialog => {
+            if(dialog.isConfirmed) {
+                window.location.assign(event.dataset.deleteUrl);
+            }
+        })
+    }
+    </script>
+
+    <?php if($this->session->flashdata('message')): ?>
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: '<?= $this->session->flashdata('message') ?>'
+            })
+            </script>
+    <?php endif; ?>
 </body>
 </html>
-
-
