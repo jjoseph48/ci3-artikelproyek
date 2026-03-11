@@ -62,4 +62,9 @@ class Article_model extends CI_Model
 
         return $this->db->delete($this->_table, ['id' => $id]);
     }
+
+    public function count() 
+    {
+        return $this->db->count_all($this->_table);
+    }
 }

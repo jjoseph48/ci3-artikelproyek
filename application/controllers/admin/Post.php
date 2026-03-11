@@ -12,7 +12,11 @@ class Post extends CI_Controller
     public function index()
     {
         $data['articles'] = $this->article_model->get();
-        $this->load->view('admin/post_list.php', $data);
+        if(count($data['articles']) <= 0){
+            $this->load->view('admin/post_empty.php');
+        } else {
+            $this->load->view('admin/post_list.php', $data);
+        }
     }
 
     public function new()

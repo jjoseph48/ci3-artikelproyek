@@ -11,8 +11,21 @@
 
         <div class="content">
             <h1>Overview</h1>
-            <p><b>13</b> <span class="text-gray">Post</span></p>
-            <p><b>11</b> <span class="text-gray">Feedback</span></p>
+
+            <div style="display:flex; gap: 1em">
+                <div class="card text-center" style="width: 100px;">
+                    <h2>
+                        <?= $article_count ?>
+                    </h2>
+                    <p><a href="<?= site_url('admin/post') ?>">Artikel</a></p>
+                </div>
+                <div class="card text-center" style="width: 100px;">
+                    <h2>
+                        <?= $feedback_count ?>
+                    </h2>
+                    <p><a href="<?= site_url('admin/feedback') ?>">Feedback</a></p>
+                </div>
+            </div>   
 
             <?php $this->load->view('admin/_partials/footer.php') ?>
         </div>
