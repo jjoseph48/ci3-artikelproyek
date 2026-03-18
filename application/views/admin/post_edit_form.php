@@ -15,8 +15,7 @@
             <form action="" method="POST">
                 <div>
                     <label for="title">Title*</label>
-                    <input type="text" name="title" class="<?= form_error('title') ? 'invalid' : '' ?>"
-                    value="<?= form_error('title') ? set_value('title') : $article->title ?>" />
+                    <input type="text" name="title" class="<?= form_error('title') ? 'invalid' : '' ?>" value="<?= form_error('title') ? set_value('title') : $article->title ?>" />
                     <div class="invalid-feedback">
                         <?= form_error('title') ?>
                     </div>

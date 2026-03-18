@@ -17,7 +17,7 @@ class Article_model extends CI_Model
             [
                 'field' => 'draft',
                 'label' => 'Draft',
-                'rules' => 'required|in_list[true,false'
+                'rules' => 'required|in_list[true,false]'
             ],
             [
                 'field' => 'content',
