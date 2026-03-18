@@ -15,7 +15,12 @@
             <form action="" method="POST">
                 <div>
 					<label for="title">Title*</label>
-					<input type="text" name="title" class="<?= form_error('title') ? 'invalid' : '' ?>" placeholder="Judul artikel" value="<?= set_value('title') ?>" />
+					<input type="text" name="title" 
+                    class="<?= form_error('title') ? 'invalid' : '' ?>" 
+                    placeholder="Judul artikel" 
+                    value="<?= set_value('title') ?>" 
+                    required
+                    maxlength="128"/>
 					<div class="invalid-feedback">
 						<?= form_error('title') ?>
 					</div>
