@@ -21,8 +21,15 @@ class Post extends CI_Controller
 
     public function new()
     {
+        $this->load->library('form_validation');
         if($this->input->method() === 'post') {
-            // TODO: Lakukan validasi sebelum menyimpan ke model
+            // Lakukan validasi sebelum menyimpan ke model
+            $rules=$this->article_model->rules();
+            $this->form_validation->set_rules($rules);
+
+            if($this->form_validation->run() === FALSE) {
+                return $this->load->view('admin/post_new_form');
+            }
 
             // generate unique id dengan uniqid and slug dengan url_title
             $id = uniqid('', true);
@@ -50,13 +57,19 @@ class Post extends CI_Controller
     public function edit($id)
     {
         $data['article'] = $this->article_model->find($id);
+        $this->load->library('form_validation');
 
         if(!data['article'] || !$id){
             show_404();
         }
 
         if($this->input->method() === 'post') {
-            // TODO: Lakukan validasi sebelum simpan di model
+            $rules = $this->article_model->rules();
+            $this->form_validation->set_rules($rules);
+
+            if($this->form_validation->run() === FALSE){
+                return $this->load->view('admin/post_edit_form.php', $data);
+            }
 
             $article = [
                 'id' => $id,
