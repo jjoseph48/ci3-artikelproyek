@@ -22,7 +22,8 @@ class Setting extends CI_Controller
 
     public function index()
     {
-        $this->load->view('admin/setting.php');
+        $data['current_user'] = $this->auth_model->current_user();
+        $this->load->view('admin/setting.php', $data);
     }
 }
 ?>

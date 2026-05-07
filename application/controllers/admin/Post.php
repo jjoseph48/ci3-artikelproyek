@@ -15,9 +15,10 @@ class Post extends CI_Controller
 
     public function index()
     {
+        $data['current_user'] = $this->auth_model->current_user();
         $data['articles'] = $this->article_model->get();
         if(count($data['articles']) <= 0){
-            $this->load->view('admin/post_empty.php');
+            $this->load->view('admin/post_empty.php', $data);
         } else {
             $this->load->view('admin/post_list.php', $data);
         }
@@ -25,6 +26,7 @@ class Post extends CI_Controller
 
     public function new()
     {
+        $data['current_user'] = $this->auth_model->current_user();
         $this->load->library('form_validation');
         if($this->input->method() === 'post') {
             // Lakukan validasi sebelum menyimpan ke model
@@ -32,7 +34,7 @@ class Post extends CI_Controller
             $this->form_validation->set_rules($rules);
 
             if($this->form_validation->run() === FALSE) {
-                return $this->load->view('admin/post_new_form');
+                return $this->load->view('admin/post_new_form', $data);
             }
 
             // generate unique id dengan uniqid and slug dengan url_title
@@ -55,15 +57,16 @@ class Post extends CI_Controller
             }
         }
 
-        $this->load->view('admin/post_new_form.php');
+        $this->load->view('admin/post_new_form.php', $data);
     }
     
     public function edit($id)
     {
         $data['article'] = $this->article_model->find($id);
+        $data['current_user'] = $this->auth_model->current_user();
         $this->load->library('form_validation');
 
-        if(!data['article'] || !$id){
+        if(!$data['article'] || !$id){
             show_404();
         }
 
