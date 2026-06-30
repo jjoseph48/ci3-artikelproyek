@@ -30,10 +30,10 @@
             <div class="card">
                 <div class="card-header">
                     <b>Profile Settings</b>
-                    <a href=
-
+                    <a href= "<?= site_url('admin/setting/edit_profile') ?>">Edit Profile</a>
+                </div>
                 <div class="card-body">
-                    Name : <span class="text-gray"><?= html_escape($curent_user->name) ?></span><br>
+                    Name : <span class="text-gray"><?= html_escape($current_user->name) ?></span><br>
                     Email : <span class="text-gray"><?= html_escape($current_user->email) ?></span>
                 </div>
             <div class="card">
@@ -41,11 +41,37 @@
                     <b>Security & Password</b>
                     <a href="<?= site_url('admin/setting/edit_password') ?>">Edit Password</a>
                 </div>
-
+                <div class="card-body">
+                    Your Password : <span class="text-gray">******</span>
+                    <br>
+                    Last Changed : <span class="text-gray">22-08-2020</span>
+                </div>
+            </div>
 
             <?php $this->load->view('admin/_partials/footer.php') ?>
         </div>
     </main>
+
+    <?php if ($this->session->flashdata('message')) : ?>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: '<?= $this->session->flashdata('message') ?>'
+            })
+        </script>
+    <?php endif; ?>
 </body>
 
 </html>
