@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body">
                     <?php
-                    $avatar = $current_user->avatar ? base_url('upload/avatar/' . $curent_user->avatar) : get_gravatar($current_user->email)
+                        $avatar = $current_user->avatar ? base_url('upload/avatar/' . $current_user->avatar) : get_gravatar($current_user->email)
                     ?>
                     <img src="<?= $avatar ?>" alt="<?= htmlentities($current_user->name, TRUE) ?>" height="80" width="80">
                 </div>
