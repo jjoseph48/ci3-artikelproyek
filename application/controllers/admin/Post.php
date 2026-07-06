@@ -17,6 +17,12 @@ class Post extends CI_Controller
     {
         $data['current_user'] = $this->auth_model->current_user();
         $data['articles'] = $this->article_model->get();
+        $data['keyword'] = $this->input->get('keyword');
+
+        if(!empty($this->input->get('keyword'))) {
+            $data['articles'] = $this->article_model->search($data['keyword']);
+        }
+
         if(count($data['articles']) <= 0){
             $this->load->view('admin/post_empty.php', $data);
         } else {
