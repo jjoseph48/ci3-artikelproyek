@@ -27,9 +27,9 @@ class Article_model extends CI_Model
         ];
     }
 
-    public function get()
+    public function get($limit = null, $offset = null)
     {
-        $query = $this->db->get($this->_table);
+        $query = $this->db->get($this->_table, $limit, $offset);
         return $query->result();
     }
 

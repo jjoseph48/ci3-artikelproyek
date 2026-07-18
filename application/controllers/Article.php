@@ -19,6 +19,9 @@ class Article extends CI_Controller
         $config['total_rows'] = $this->article_model->get_published_count();
         $config['per_page'] = 2;
 
+        $config['full_tag_open'] = '<div class="pagination">';
+        $config['full_tag_close'] = '</div>';
+
         $this->pagination->initialize($config);
         $limit = $config['per_page'];
         $offset = html_escape($this->input->get('per_page'));
