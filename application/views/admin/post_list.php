@@ -15,6 +15,12 @@
 
             <div class="toolbar">
                 <a href="<?= site_url('admin/post/new') ?>" class="button button-primary" role="button">+ Tulis Artikel</a>
+                <div>
+                    <form action="" method="GET" style="flex-direction: row; width:360px">
+                        <input type="search" name="keyword" placeholder="Cari artikel" value="<?= html_escape($keyword) ?>">
+                        <input type="submit" value="Cari" class="button" style="width: 32%">
+                    </form>
+                </div>
             </div>
 
             <table class="table">
